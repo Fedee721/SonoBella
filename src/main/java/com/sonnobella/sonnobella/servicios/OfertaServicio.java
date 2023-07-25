@@ -1,6 +1,7 @@
 package com.sonnobella.sonnobella.servicios;
 
 import com.sonnobella.sonnobella.entidades.Oferta;
+import com.sonnobella.sonnobella.excepciones.MiException;
 import com.sonnobella.sonnobella.repositorios.OfertaRepositorio;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
@@ -16,11 +17,12 @@ public class OfertaServicio {
     private OfertaRepositorio ofertaRepositorio;
     
     @Transactional
-    public void crearOferta(Long id, String titulo, String descripcion, Long precio) {
+    public void crearOferta( String titulo, String descripcion, Long precio) throws MiException {
+        
+        validar(titulo,descripcion,precio);
         
         Oferta oferta = new Oferta();
         
-        oferta.setId(id);
         oferta.setTitulo(titulo);
         oferta.setDescripcion(descripcion);
         oferta.setPrecio(precio);
@@ -36,7 +38,10 @@ public class OfertaServicio {
         return ofertas;
     }
     
-    public void modificarOferta(Long id, String titulo, String descripcion, Long precio) {
+    public void modificarOferta(String id, String titulo, String descripcion, Long precio) throws MiException {
+        
+        validar(titulo,descripcion,precio);
+        
         Optional<Oferta> respuesta = ofertaRepositorio.findById(id);
         
         if(respuesta.isPresent()) {
@@ -48,6 +53,18 @@ public class OfertaServicio {
             oferta.setPrecio(precio);
             
             ofertaRepositorio.save(oferta);
+        }
+    }
+    
+    private void validar( String titulo, String descripcion, Long precio) throws MiException {
+        if(titulo==null || titulo.isEmpty()) {
+            throw new MiException("El titulo no puede ser nulo o estar vacio.");
+        }
+        if(descripcion==null || descripcion.isEmpty()) {
+            throw new MiException("La descripcion no puede ser nulo o estar vacio.");
+        }
+        if(precio==null || precio<=0) {
+            throw new MiException("El precio no puede ser nulo o negativo.");
         }
     }
 }

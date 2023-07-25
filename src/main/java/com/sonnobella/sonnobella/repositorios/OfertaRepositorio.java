@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OfertaRepositorio extends JpaRepository<Oferta, Long> {
+public interface OfertaRepositorio extends JpaRepository<Oferta, String> {
     
     @Query("SELECT o FROM Oferta o WHERE o.titulo = :titulo")
     public Oferta buscarPorTitulo(@Param("titulo") String titulo);
