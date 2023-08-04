@@ -1,2 +1,0 @@
-# SonnoBella
-Sonno Bella
