@@ -38,6 +38,7 @@ public class OfertaServicio {
         return ofertas;
     }
     
+    @Transactional
     public void modificarOferta(String id, String titulo, String descripcion, Long precio) throws MiException {
         
         validar(titulo,descripcion,precio);
@@ -54,6 +55,19 @@ public class OfertaServicio {
             
             ofertaRepositorio.save(oferta);
         }
+    }
+    
+    public Oferta getOne(String id) {
+        return ofertaRepositorio.getOne(id);
+    }
+    
+    @Transactional
+    public void eliminar(String id) throws MiException{
+        
+        Oferta oferta = ofertaRepositorio.getById(id);
+        
+        ofertaRepositorio.delete(oferta);
+
     }
     
     private void validar( String titulo, String descripcion, Long precio) throws MiException {
