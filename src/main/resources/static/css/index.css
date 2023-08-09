@@ -12,6 +12,17 @@ body {
     display: flex;
     flex-direction: row;
 }
+
+.container{
+    background-color: #00000047;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: solid 2px beige;
+    box-shadow: 0 0 15px black;
+    margin: auto;
+    min-width: 25rem;
+}
+
 .logo {
     width: 7%;
     height: 7%;
