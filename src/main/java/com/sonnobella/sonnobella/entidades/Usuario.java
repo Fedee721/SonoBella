@@ -1,9 +1,12 @@
 package com.sonnobella.sonnobella.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import com.sonnobella.sonnobella.enumeradores.Rol;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -21,6 +24,17 @@ public class Usuario {
     
     @OneToOne
     private Imagen imagen;
+    
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 
     public Usuario() {
     }

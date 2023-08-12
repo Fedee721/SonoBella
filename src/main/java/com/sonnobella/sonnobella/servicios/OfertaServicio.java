@@ -3,10 +3,10 @@ package com.sonnobella.sonnobella.servicios;
 import com.sonnobella.sonnobella.entidades.Oferta;
 import com.sonnobella.sonnobella.excepciones.MiException;
 import com.sonnobella.sonnobella.repositorios.OfertaRepositorio;
-import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
