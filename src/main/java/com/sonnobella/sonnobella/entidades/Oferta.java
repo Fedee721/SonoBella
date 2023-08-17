@@ -3,12 +3,10 @@ package com.sonnobella.sonnobella.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import lombok.Data;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 
-
-@Data
 @Entity
 public class Oferta {
     
@@ -20,4 +18,52 @@ public class Oferta {
     private String titulo;
     private String descripcion;
     private Long precio;
+    
+    @OneToOne
+    private Imagen imagen;
+
+    public Oferta() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Long precio) {
+        this.precio = precio;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+    
+    
 }

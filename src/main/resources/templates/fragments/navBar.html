@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navBar w-100">
+<nav class="navbar navbar-expand-lg navBar w-100" style="height: 4rem;">
   <div class="containerImg">
     <img
       class="logo"
@@ -9,53 +9,39 @@
   </div>
   <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
     <ul class="navbar-nav ms-auto elementos">
+      <!--OFERTAS-->
       <li class="nav-item dropdown">
         <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          >Ofertas</a
-        >
+          class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">Ofertas
+        </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <!--En href va a a donde debe ir cuando crea ofertas-->
           <li>
-            <a class="dropdown-item" href="/oferta/registrar">Crear Oferta</a>
+            <a class="dropdown-item" sec:authorize="hasRole('ADMIN')" href="/oferta/registrar">Crear Oferta</a>
           </li>
-          <li><hr class="dropdpwn-divider" /></li>
-          <!--En href va a a donde debe ir cuando modificar o eliminar ofertas-->
+          <li><hr class="dropdpwn-divider" sec:authorize="hasRole('ADMIN')"/></li>
           <li>
             <a class="dropdown-item" href="/oferta/lista">Listar Oferta</a>
           </li>
         </ul>
       </li>
+      <!--AGENDA-->
       <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          >Calendario</a
-        >
+        <a class="nav-link" href="/admin/agenda"id="navbarDropdown"
+          role="button" sec:authorize="hasRole('ADMIN')">Agenda</a>
       </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          >Usuario</a
-        >
+      <!--USUARIO-->
+      <li class="nav-item dropdown" style="height: 50%;">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+          th:if="${session.usuariosession == null}"
+          role="button" data-bs-toggle="dropdown"aria-expanded="false">Usuario</a>
+        <img class="nav-link dropdown-toggle imgperfil" href="#" id="navbarDropdown" 
+        th:if="${session.usuariosession != null}" th:src="@{/imagen/perfil/__${session.usuariosession.id}__}" alt="Img Perfil" role="button" data-bs-toggle="dropdown"aria-expanded="false">
         <ul class="dropdown-menu">
-          <!--En href va a a donde debe ir cuando crea ofertas-->
-          <li><a class="dropdown-item" href="/login">Iniciar Sesion</a></li>
-          <li><hr class="dropdpwn-divider" /></li>
-          <!--En href va a a donde debe ir cuando modificar o eliminar ofertas-->
-          <li><a class="dropdown-item" href="/registrar">Registrarse</a></li>
+          <li><a class="dropdown-item" th:if="${session.usuariosession == null}" href="/login">Iniciar Sesion</a></li>
+          <li><hr class="dropdpwn-divider" th:if="${session.usuariosession == null}"/></li>
+          <li><a class="dropdown-item" th:if="${session.usuariosession == null}" href="/registrar">Registrarse</a></li>
+          <li><a class="dropdown-item" th:if="${session.usuariosession != null}" href="/logout">Cerrar Sesion</a></li>
         </ul>
       </li>
     </ul>

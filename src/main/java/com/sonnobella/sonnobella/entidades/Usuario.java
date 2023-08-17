@@ -21,7 +21,6 @@ public class Usuario {
     private String email;
     private String pass;
     
-    
     @OneToOne
     private Imagen imagen;
     

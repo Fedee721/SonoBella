@@ -1,5 +1,6 @@
 package com.sonnobella.sonnobella.servicios;
 
+import com.sonnobella.sonnobella.entidades.Imagen;
 import com.sonnobella.sonnobella.entidades.Oferta;
 import com.sonnobella.sonnobella.excepciones.MiException;
 import com.sonnobella.sonnobella.repositorios.OfertaRepositorio;
@@ -9,6 +10,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class OfertaServicio {
@@ -16,8 +18,12 @@ public class OfertaServicio {
     @Autowired
     private OfertaRepositorio ofertaRepositorio;
     
+    @Autowired
+    private ImagenServicio imagenServicio;
+    
     @Transactional
-    public void crearOferta( String titulo, String descripcion, Long precio) throws MiException {
+    public void crearOferta( String titulo, String descripcion, Long precio, MultipartFile archivo)
+            throws MiException {
         
         validar(titulo,descripcion,precio);
         
@@ -26,6 +32,10 @@ public class OfertaServicio {
         oferta.setTitulo(titulo);
         oferta.setDescripcion(descripcion);
         oferta.setPrecio(precio);
+        
+        Imagen imagen = imagenServicio.guardar(archivo);
+        
+        oferta.setImagen(imagen);
         
         ofertaRepositorio.save(oferta);
     }
@@ -39,7 +49,8 @@ public class OfertaServicio {
     }
     
     @Transactional
-    public void modificarOferta(String id, String titulo, String descripcion, Long precio) throws MiException {
+    public void modificarOferta(String id, String titulo, String descripcion, Long precio, MultipartFile archivo)
+            throws MiException {
         
         validar(titulo,descripcion,precio);
         
@@ -52,6 +63,16 @@ public class OfertaServicio {
             oferta.setTitulo(titulo);
             oferta.setDescripcion(descripcion);
             oferta.setPrecio(precio);
+            
+            String idImagen = null;
+            
+            if (oferta.getImagen() != null) {
+                idImagen = oferta.getImagen().getId();
+            }
+            
+            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+            
+            oferta.setImagen(imagen);
             
             ofertaRepositorio.save(oferta);
         }

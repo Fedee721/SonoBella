@@ -47,7 +47,6 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setEmail(email);
 
         usuario.setPass(new BCryptPasswordEncoder().encode(password));
-        usuario.setPass(password);
         usuario.setRol(Rol.USER);
         
         Imagen imagen = imagenServicio.guardar(archivo);
@@ -72,7 +71,6 @@ public class UsuarioServicio implements UserDetailsService {
             usuario.setEmail(email);
 
             usuario.setPass(new BCryptPasswordEncoder().encode(password));
-            usuario.setPass(password);
             usuario.setRol(Rol.USER);
             
             String idImagen = null;

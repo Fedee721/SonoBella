@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-image: url("../img/sonobellaLogo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+.title {
+    text-align: center;
+    color: aqua;
+}
+.calendar {
+    background: rgb(239, 154, 247);
+    width: 80%;
+    max-width: 600px;
+    margin: 1em auto;
+    padding: .5em 0;
+    border-radius: 1em;
+    border: solid 2px beige;
+    box-shadow: 0 0 15px black;
+}
+.calendar__info {
+    display: flex;
+    align-items: center;
+    padding: 0 2em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+.calendar__prev, .calendar__next {
+    color: gold;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+.calendar__prev {
+    margin-right: auto;
+}
+.calendar__next {
+    margin-left: auto;
+}
+.calendar__week, .calendar__dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    
+    margin: auto;
+    place-items: center;
+}
+.calendar__week {
+    background: #35353541;
+}
+.calendar__month, .calendar__year, .agenda__day, .agenda__dayNumber {
+    padding: .5em 1em;
+}
+.calendar__item {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    margin: auto;
+    cursor: pointer;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+}
+.calendar__today {
+    background: rgba(255, 253, 255, 0.486);
+    color: white;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+}
+.select {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    margin: auto;
+    cursor: pointer;
+    place-items: center;
+    background: rgba(255, 253, 255, 0.205);
+    color: white;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+}
+.unselect {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    margin: auto;
+    cursor: pointer;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+}
+.calendar__last-days {
+    opacity: .3;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+}
+.agenda {
+    background: rgb(239, 154, 247);
+    width: 80%;
+    max-width: 600px;
+    margin: 1em auto;
+    padding: .5em 0;
+    border-radius: 1em;
+    border: solid 2px beige;
+    box-shadow: 0 0 15px black;
+}
+.agenda__contenido {
+    display: flex;
+    flex-direction: row;
+}
+.agenda__horarios {
+    background: rgba(255, 255, 255, 0.486);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 2em;
+    margin-right: auto;
+    width: 15%;
+}
+.agenda__turnos {
+    background: rgba(255, 255, 255, 0.486);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 2em;
+    margin: auto;
+    width: 85%;
+}
+.agenda__hora {
+    justify-content: center;
+    align-items: center;
+    border: solid 2px beige;
+    margin: auto;
+    width: 100%;
+    min-width:5em;
+    max-width: 6em;
+    min-height: 2em;
+    text-align: center;
+}
+.agenda__turno {
+    justify-content: center;
+    align-items: center;
+    border: solid 2px beige;
+    margin: auto;
+    width: 100%;
+    min-height: 2em;
+}
+.agenda__select {
+    background: rgba(255, 253, 255, 0.315);
+    color: white;
+    width: 50%;
+    border-radius: 50%;
+    margin: auto;
+}

@@ -66,7 +66,6 @@ public class ImagenServicio {
             }
         }
         return null;
-        
     }
     
     public List<Imagen> listarTodos() {

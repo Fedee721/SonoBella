@@ -7,12 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/oferta")
@@ -27,10 +27,11 @@ public class OfertaControlador {
     }
     
     @PostMapping("/registro")
-    public String registro(@RequestParam String titulo, @RequestParam String descripcion, @RequestParam Long precio, ModelMap modelo) {
+    public String registro(@RequestParam String titulo, @RequestParam String descripcion,
+            @RequestParam Long precio, ModelMap modelo, MultipartFile archivo) {
         
         try {
-            ofertaServicio.crearOferta(titulo, descripcion, precio);
+            ofertaServicio.crearOferta(titulo, descripcion, precio, archivo);
             modelo.put("exito", "La oferta fue cargada con exito!");
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
@@ -54,9 +55,10 @@ public class OfertaControlador {
     }
     
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, String titulo, String descripcion, Long precio, ModelMap modelo) {  
+    public String modificar(@PathVariable String id, String titulo, String descripcion, Long precio,
+            ModelMap modelo, MultipartFile archivo) {  
         try {
-            ofertaServicio.modificarOferta(id, titulo, descripcion, precio);
+            ofertaServicio.modificarOferta(id, titulo, descripcion, precio, archivo);
             return "redirect:../lista";
         } catch (MiException e) {
             modelo.put("error", e.getMessage());

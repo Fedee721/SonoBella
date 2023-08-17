@@ -1,8 +1,11 @@
 package com.sonnobella.sonnobella.controladores;
 
+import com.sonnobella.sonnobella.entidades.Usuario;
 import com.sonnobella.sonnobella.excepciones.MiException;
 import com.sonnobella.sonnobella.servicios.UsuarioServicio;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +49,27 @@ public class PortalControlador {
     }
     
     @GetMapping("/login")
-    public String iniciar() {
+    public String iniciar(@RequestParam(required = false) String error,ModelMap modelo) {
+        if (error != null) {
+            modelo.put("error", "Usuario o Contraseña invalidos!");
+            return "redirect:/login";
+        }
         return "iniciarSesion.html";
     }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/inicio")
+    public String inicio(HttpSession session) {
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        
+        if (logueado.getRol().toString().equals("ADMIN")) {
+            return "redirect:/admin/dashboard";
+        }
+        return "inicio.html";
+    }
+    
+    
+    
     
 }
