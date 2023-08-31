@@ -54,7 +54,7 @@ body {
     background: #35353541;
 }
 .calendar__month, .calendar__year, .agenda__day, .agenda__dayNumber {
-    padding: .5em 1em;
+    padding: .5em;
 }
 .calendar__item {
     display: block;
@@ -69,8 +69,12 @@ body {
 }
 .calendar__today {
     background: rgba(255, 253, 255, 0.486);
+    text-align: center;
+    line-height: 2;
     color: white;
     margin: auto;
+    cursor: pointer;
+    place-items: center;
     width: 100%;
     height: 100%;
     border: solid 1px #8b8b8bad;
@@ -115,19 +119,25 @@ body {
     border-radius: 1em;
     border: solid 2px beige;
     box-shadow: 0 0 15px black;
+    height: 20rem;
 }
 .agenda__contenido {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    height: 80%;
 }
 .agenda__horarios {
     background: rgba(255, 255, 255, 0.486);
     display: flex;
     flex-direction: column;
     justify-content: start;
-    gap: 2em;
-    margin-right: auto;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    place-items: center;
     width: 15%;
+    height: 100%;
 }
 .agenda__turnos {
     background: rgba(255, 255, 255, 0.486);
@@ -135,9 +145,12 @@ body {
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 2em;
+    text-align: center;
     margin: auto;
+    place-items: center;
     width: 85%;
+    height: 100%;
+    margin-top: 0%;
 }
 .agenda__hora {
     justify-content: center;
@@ -149,14 +162,19 @@ body {
     max-width: 6em;
     min-height: 2em;
     text-align: center;
+    place-items: center;
+    height: 50%;
 }
 .agenda__turno {
     justify-content: center;
     align-items: center;
+    text-align: center;
     border: solid 2px beige;
     margin: auto;
+    place-items: center;
     width: 100%;
     min-height: 2em;
+    height: 50%;
 }
 .agenda__select {
     background: rgba(255, 253, 255, 0.315);
@@ -164,4 +182,43 @@ body {
     width: 50%;
     border-radius: 50%;
     margin: auto;
+}
+.aselect {
+    justify-content: center;
+    align-items: center;
+    border: solid 2px beige;
+    width: 100%;
+    min-width:5em;
+    min-height: 2em;
+    text-align: center;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 253, 255, 0.315);
+    color: white;
+    
+}
+.aunselect {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    margin: auto;
+    cursor: pointer;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+}
+.reservado {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    margin: auto;
+    cursor: default;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #8b8b8bad;
+    background: rgba(119, 71, 71, 0.384);
+    color: rgb(0, 0, 0);
 }

@@ -22,10 +22,10 @@ public class OfertaServicio {
     private ImagenServicio imagenServicio;
     
     @Transactional
-    public void crearOferta( String titulo, String descripcion, Long precio, MultipartFile archivo)
-            throws MiException {
+    public void crearOferta( String titulo, String descripcion, Long precio, MultipartFile archivo,
+            Boolean esCurso) throws MiException {
         
-        validar(titulo,descripcion,precio);
+        validar(titulo, descripcion, precio, esCurso);
         
         Oferta oferta = new Oferta();
         
@@ -36,6 +36,7 @@ public class OfertaServicio {
         Imagen imagen = imagenServicio.guardar(archivo);
         
         oferta.setImagen(imagen);
+        oferta.setEsCurso(esCurso);
         
         ofertaRepositorio.save(oferta);
     }
@@ -49,10 +50,10 @@ public class OfertaServicio {
     }
     
     @Transactional
-    public void modificarOferta(String id, String titulo, String descripcion, Long precio, MultipartFile archivo)
-            throws MiException {
+    public void modificarOferta(String id, String titulo, String descripcion, Long precio, MultipartFile archivo,
+            Boolean esCurso) throws MiException {
         
-        validar(titulo,descripcion,precio);
+        validar(titulo,descripcion,precio, esCurso);
         
         Optional<Oferta> respuesta = ofertaRepositorio.findById(id);
         
@@ -74,6 +75,8 @@ public class OfertaServicio {
             
             oferta.setImagen(imagen);
             
+            oferta.setEsCurso(esCurso);
+            
             ofertaRepositorio.save(oferta);
         }
     }
@@ -91,7 +94,7 @@ public class OfertaServicio {
 
     }
     
-    private void validar( String titulo, String descripcion, Long precio) throws MiException {
+    private void validar( String titulo, String descripcion, Long precio, Boolean esCurso) throws MiException {
         if(titulo==null || titulo.isEmpty()) {
             throw new MiException("El titulo no puede ser nulo o estar vacio.");
         }
@@ -101,5 +104,6 @@ public class OfertaServicio {
         if(precio==null || precio<=0) {
             throw new MiException("El precio no puede ser nulo o negativo.");
         }
+        if (esCurso==null) {esCurso=false;}
     }
 }

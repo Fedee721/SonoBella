@@ -1,0 +1,12 @@
+<div th:if="${error!=null}" class="alert alert-danger mensajeError">
+    <div class="card-body">
+        <h5 class="card-title">Error!!</h5>
+        <p class="card-text" th:text="${error}"></p>
+    </div>
+</div>
+<div th:if="${exito!=null}"class="alert alert-success mensajeExito">
+    <div class="card-body">
+        <h5 class="card-title">Exito!!</h5>
+        <p class="card-text" th:text="${exito}"></p>
+    </div>
+</div>

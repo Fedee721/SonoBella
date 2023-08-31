@@ -85,7 +85,6 @@ public class UsuarioServicio implements UserDetailsService {
             
             usuarioRepositorio.save(usuario);
         }
-
     }
     
     //BUSCAR UN USUARIO-----------------------------------

@@ -1,6 +1,5 @@
 package com.sonnobella.sonnobella.entidades;
 
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,9 +13,10 @@ public class Turno {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private Date fecha;
+    private Integer ano;
+    private Integer mes;
+    private Integer dia;
     private Integer horario;
-    private Integer duracion;
     
     @OneToOne
     private Usuario cliente;
@@ -32,28 +32,12 @@ public class Turno {
         this.id = id;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     public Integer getHorario() {
         return horario;
     }
 
     public void setHorario(Integer horario) {
         this.horario = horario;
-    }
-
-    public Integer getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
     }
 
     public Usuario getCliente() {
@@ -71,6 +55,31 @@ public class Turno {
     public void setOferta(Oferta oferta) {
         this.oferta = oferta;
     }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
+    }
+
+    public Integer getMes() {
+        return mes;
+    }
+
+    public void setMes(Integer mes) {
+        this.mes = mes;
+    }
+
+    public Integer getDia() {
+        return dia;
+    }
+
+    public void setDia(Integer dia) {
+        this.dia = dia;
+    }
+    
 
     public Turno() {
     }

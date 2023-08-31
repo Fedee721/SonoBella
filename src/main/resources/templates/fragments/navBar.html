@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
     <ul class="navbar-nav ms-auto elementos">
       <!--OFERTAS-->
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown itemNav">
         <a
           class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
           role="button" data-bs-toggle="dropdown" aria-expanded="false">Ofertas
@@ -26,12 +26,12 @@
         </ul>
       </li>
       <!--AGENDA-->
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown itemNav">
         <a class="nav-link" href="/admin/agenda"id="navbarDropdown"
           role="button" sec:authorize="hasRole('ADMIN')">Agenda</a>
       </li>
       <!--USUARIO-->
-      <li class="nav-item dropdown" style="height: 50%;">
+      <li class="nav-item dropdown itemNav">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
           th:if="${session.usuariosession == null}"
           role="button" data-bs-toggle="dropdown"aria-expanded="false">Usuario</a>

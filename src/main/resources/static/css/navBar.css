@@ -1,0 +1,49 @@
+body {
+    background-image: url("../img/sonobellaLogo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+.containerImg {
+    display: flex;
+    flex-direction: row;
+}
+.logo {
+    width: 7%;
+    height: 7%;
+}
+.imgperfil {
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    margin: auto;
+}
+.navBar{
+    background-color: #fff !important;
+}
+.itemNav {
+    height: 80%;
+    margin: auto;
+}
+.elementos{
+    margin-right: 50px;
+    margin-top: auto;
+    height: 100%;
+}
+.elementosNav{
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+    color: #37474f;
+    font-weight: 700;
+    padding: 0%;
+    height: 100%;
+    margin: auto;
+    place-items: center;
+}

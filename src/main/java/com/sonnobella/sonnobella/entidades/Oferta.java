@@ -19,6 +19,8 @@ public class Oferta {
     private String descripcion;
     private Long precio;
     
+    private Boolean esCurso = false;
+
     @OneToOne
     private Imagen imagen;
 
@@ -65,5 +67,12 @@ public class Oferta {
         this.imagen = imagen;
     }
     
+    public boolean isEsCurso() {
+        return esCurso;
+    }
+
+    public void setEsCurso(Boolean esCurso) {
+        this.esCurso = esCurso;
+    }
     
 }

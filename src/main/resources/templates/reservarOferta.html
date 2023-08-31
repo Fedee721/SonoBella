@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>    
+    <title>Sonno Bella | Reservar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/agenda.css">
+    <link rel="stylesheet" href="/css/navBar.css">
+</head>
+<body>
+    <nav th:replace="~{/fragments/navBar :: nav}"></nav>
+    <div>
+        <h1 class="title">Calendario</h1>
+        <div class="calendar">
+            <div class="calendar__info">
+                <div class="calendar__prev" id="prev__month">&#9664</div>
+                <div class="calendar__month" id="month"></div>
+                <div class="calendar__year" id="year"></div>
+                <div class="calendar__next" id="next__month">&#9654</div>
+            </div>
+            <div class="calendar__week">
+                <div class="calendar__day calendar__item">Lun</div>
+                <div class="calendar__day calendar__item">Mar</div>
+                <div class="calendar__day calendar__item">Mie</div>
+                <div class="calendar__day calendar__item">Jue</div>
+                <div class="calendar__day calendar__item">Vie</div>
+                <div class="calendar__day calendar__item">Sab</div>
+                <div class="calendar__day calendar__item">Dom</div>
+            </div>
+            <div class="calendar__dates" id="dates"></div>
+        </div>
+        <div class="agenda">
+            <div hidden  class="reservas" id="reserva">
+                <div hidden th:each="turno : ${turnos}" class="res__ano" th:text="${turno.ano}" th:turno="${turno.id}"></div>
+                <div hidden th:each="turno : ${turnos}" class="res__mes" th:text="${turno.mes}" th:turno="${turno.id}"></div>
+                <div hidden th:each="turno : ${turnos}" class="res__dia" th:text="${turno.dia}" th:turno="${turno.id}"></div>
+                <div hidden th:each="turno : ${turnos}" class="res__horario" th:text="${turno.horario}" th:turno="${turno.id}"></div>
+            </div>
+            <div class="calendar__info">
+                <div class="calendar__prev" id="prev__day">&#9664</div>
+                <div class="agenda__day" id="day"></div>
+                <div class="agenda__dayNumber" id="dayNumber"></div>
+                <div class="calendar__next" id="next__day">&#9654</div>
+            </div>
+            <div class="agenda__contenido">
+                <div class="agenda__horarios" id="horario"></div>
+                <div class="agenda__turnos" id="turno"></div>
+            </div>
+        </div>
+        <div>
+            <form  class="formulario border-black" th:action="@{/oferta/reservar/__${oferta.id}__}" method="POST">
+                <div th:replace="~{/fragments/error :: div}"></div>
+                
+                <input hidden th:value="${id}" name="id">
+                <input hidden th:value="${session.usuariosession.id}" name="idCliente">
+                <div class="form__info" id="info__reserva"></div>
+                <button type="submit" class="btn btn-primary mt-3 botones">Ir a pagar</button>
+            </form>
+        </div>
+    </div>
+    <script src="/js/scriptsCalendar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
