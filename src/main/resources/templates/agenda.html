@@ -30,6 +30,12 @@
         <div class="calendar__dates" id="dates"></div>
     </div>
     <div class="agenda">
+        <div hidden  class="reservas" id="reserva">
+            <div hidden th:each="turno : ${turnos}" class="res__ano" th:text="${turno.ano}" th:turno="${turno.id}" th:tipo="${turno.oferta.esCurso}" th:titulooferta="${turno.oferta.titulo}"  th:nombre="${turno.cliente.nombre}"></div>
+            <div hidden th:each="turno : ${turnos}" class="res__mes" th:text="${turno.mes}" th:turno="${turno.id}" th:tipo="${turno.oferta.esCurso}" th:titulooferta="${turno.oferta.titulo}"  th:nombre="${turno.cliente.nombre}"></div>
+            <div hidden th:each="turno : ${turnos}" class="res__dia" th:text="${turno.dia}" th:turno="${turno.id}" th:tipo="${turno.oferta.esCurso}" th:titulooferta="${turno.oferta.titulo}"  th:nombre="${turno.cliente.nombre}"></div>
+            <div hidden th:each="turno : ${turnos}" class="res__horario" th:text="${turno.horario}" th:turno="${turno.id}" th:tipo="${turno.oferta.esCurso}" th:titulooferta="${turno.oferta.titulo}"  th:nombre="${turno.cliente.nombre}"></div>
+        </div>
         <div class="calendar__info">
             <div class="calendar__prev" id="prev__day">&#9664</div>
             <div class="agenda__day" id="day"></div>
@@ -41,6 +47,8 @@
             <div class="agenda__turnos" id="turno"></div>
         </div>
     </div>
+    <div id="controlForm" agenda=true></div>
+    <div th:replace="~{/fragments/footer :: div}"></div>
     <script src="/js/scriptsCalendar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

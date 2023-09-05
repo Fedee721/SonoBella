@@ -58,3 +58,30 @@ form.form-signin {
     margin-left: 2rem;
     gap: 1rem;
 }
+.bienvenidaInicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.imgPerfilInicio {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+}
+.mainStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    gap: 1rem;
+    min-height: 40rem;
+}
+.linkBtn {
+    color: #000000;
+    text-decoration: none;
+}

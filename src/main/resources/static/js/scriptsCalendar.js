@@ -15,6 +15,11 @@ let day = document.getElementById('day');
 let dayNumber = document.getElementById('dayNumber');
 let horaSel;
 let reservado = [];
+let reservadoTituloOferta = [];
+let reservadoNombre = [];
+let controlForm = document.getElementById('controlForm');
+let agendaControlForm = controlForm.getAttribute('agenda');
+
 
 let prevMonthDOM = document.getElementById('prev__month');
 let nextMonthDOM = document.getElementById('next__month');
@@ -171,6 +176,7 @@ function turnosReservados() {
     })
     reservado[daySelected,10]="noReservado";
     reservado[daySelected,12]="noReservado";
+    reservado[daySelected,14]="noReservado";
     reservado[daySelected,15]="noReservado";
     reservado[daySelected,17]="noReservado";
     checkearReservados(resAnoControl, resMesControl, resDiaControl, resHorarioControl)
@@ -187,6 +193,16 @@ function checkearReservados(resAnoControl, resMesControl, resDiaControl, resHora
                                 && (rDControl.getAttribute('turno')===rMControl.getAttribute('turno'))
                                 && (rMControl.getAttribute('turno')===rAControl.getAttribute('turno'))) {
                                     reservado[daySelected,rHControl.textContent] = "reservado";
+                                    reservadoTituloOferta[daySelected,rHControl.textContent] = rHControl.getAttribute('titulooferta');
+                                    reservadoNombre[daySelected,rHControl.textContent] = rHControl.getAttribute('nombre');
+                                    if(reservado[daySelected,14]==="reservado") {
+                                        reservado[daySelected,15]="reservado";
+                                        reservado[daySelected,17]="reservado";
+                                        reservadoTituloOferta[daySelected,15] = rHControl.getAttribute('titulooferta');
+                                        reservadoNombre[daySelected,15] = rHControl.getAttribute('nombre');
+                                        reservadoTituloOferta[daySelected,17] = rHControl.getAttribute('titulooferta');
+                                        reservadoNombre[daySelected,17] = rHControl.getAttribute('nombre');
+                                    }
                                 }
                             })
                         }
@@ -247,7 +263,6 @@ function styleHour() {
         if((i!=10) && (i!=12) && (i!=15) && (i!=17)) {
             continue;
         }else{
-            
             let idHora = "horario_"+i;
             let idTurno = "turno_"+i;
             let elHora = document.getElementById(idHora);
@@ -270,8 +285,11 @@ function styleHour() {
             }else{
                 elHora.className="agenda__hora aunselect reservado";
                 elTurno.className="agenda__turno aunselect reservado";
+                if (agendaControlForm=="false") 
+                    {elTurno.textContent="";}else{
+                    elTurno.textContent = reservadoTituloOferta[daySelected,i]+": reservado por "+reservadoNombre[daySelected,i];
+                }
             }
-                
         }
     }
 }
@@ -299,26 +317,32 @@ function setNewDay() {
 }
 //FUNCION RESERVA----------------------------------------------------------------
 function reservar() {
-    let info = document.getElementById('info__reserva');
     let pDay = parseInt(daySelected);
     let pMonth = parseInt(monthNumber);
     let pYear = parseInt(currentYear);
-    let pHour = parseInt(hourSelected);
-    info.innerHTML=`
-    <div class="form-group mb-3 border-black">
-        <label hidden for="formdia" class="mb-2">Dia</label> 
-        <input hidden value="${pDay}" type="Number" id="formdia" class="form-control border-black" name="dia">
-    </div>
-    <div class="form-group mb-3 border-black">
-        <label hidden for="formmes" class="mb-2">Mes</label> 
-        <input hidden value="${pMonth}" type="Number" id="formmes" class="form-control border-black" name="mes">
-    </div>
-    <div class="form-group mb-3 border-black">
-        <label hidden for="formano" class="mb-2">Año</label> 
-        <input hidden value="${pYear}" type="Number" id="formano" class="form-control border-black" name="ano">
-    </div>
-    <div class="form-group mb-3 border-black">
-        <label hidden for="formhora" class="mb-2">Hora</label> 
-        <input hidden value="${pHour}" type="Number" id="formhora" class="form-control border-black" name="hora">
-    </div>`;
+    let pHour;
+    if (agendaControlForm=="false") {
+        let esCurso = document.getElementById('esCurso');
+        let esCursoControl = esCurso.getAttribute('ec');
+        if(esCursoControl=="true") { pHour=14;}
+        else{ pHour = parseInt(hourSelected);}
+        let info = document.getElementById('info__reserva');
+        info.innerHTML=`
+        <div class="form-group mb-3 border-black">
+            <label hidden for="formdia" class="mb-2">Dia</label> 
+            <input hidden value="${pDay}" type="Number" id="formdia" class="form-control border-black" name="dia">
+        </div>
+        <div class="form-group mb-3 border-black">
+            <label hidden for="formmes" class="mb-2">Mes</label> 
+            <input hidden value="${pMonth}" type="Number" id="formmes" class="form-control border-black" name="mes">
+        </div>
+        <div class="form-group mb-3 border-black">
+            <label hidden for="formano" class="mb-2">Año</label> 
+            <input hidden value="${pYear}" type="Number" id="formano" class="form-control border-black" name="ano">
+        </div>
+        <div class="form-group mb-3 border-black">
+            <label hidden for="formhora" class="mb-2">Hora</label> 
+            <input hidden value="${pHour}" type="Number" id="formhora" class="form-control border-black" name="hora">
+        </div>`
+    }else{ pHour = parseInt(hourSelected);}
 }

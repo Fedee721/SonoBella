@@ -47,3 +47,30 @@ body {
     margin: auto;
     place-items: center;
 }
+.footerStyle {
+    background: #ffffff;
+    width: 100%;
+    height: 6rem;
+    justify-content: end;
+    margin-bottom: 0;
+}
+.footS {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.textFooter {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+.iconosRedes {
+    display: flex;
+    justify-content: end;
+    margin-right: 2rem;
+}
+.tituloSonoBella {
+    color: #000000;
+    text-decoration: none;
+}

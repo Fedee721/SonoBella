@@ -1,6 +1,8 @@
 package com.sonnobella.sonnobella.controladores;
 
+import com.sonnobella.sonnobella.entidades.Turno;
 import com.sonnobella.sonnobella.entidades.Usuario;
+import com.sonnobella.sonnobella.servicios.TurnoServicio;
 import com.sonnobella.sonnobella.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class AdminControlador {
     
    @Autowired
    private UsuarioServicio usuarioServicio;
+   
+   @Autowired
+    private TurnoServicio turnoServicio;
     
    @GetMapping("/dashboard")
    public String panelAdministrativo(){
@@ -38,7 +43,9 @@ public class AdminControlador {
     }
     
     @GetMapping("/agenda")
-    public String agenda() {
+    public String agenda(ModelMap modelo) {
+        List<Turno> turnos = turnoServicio.listarTurnos();
+        modelo.put("turnos", turnos);
         return "agenda.html";
     }
 }
